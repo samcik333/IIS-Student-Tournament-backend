@@ -1,6 +1,5 @@
 import express, { Router } from "express";
 import cookieParser from "cookie-parser";
-import logger from "morgan";
 import { Model } from "objection";
 import Knex from "knex";
 import knexConfiig from "../knexfile";
