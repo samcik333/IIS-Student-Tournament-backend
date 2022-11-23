@@ -1,13 +1,7 @@
 export = {
   development: {
     client: "pg",
-    connection: {
-      database: process.env.DATABASE_NAME || "postgres",
-      user: process.env.POSTGRES_USER || "postgres",
-      password: process.env.POSTGRES_PASSWORD || "password",
-      port: process.env.POSTGRES_PORT || 5433,
-      host: process.env.POSTGRES_HOST || "localhost",
-    },
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: "./src/migrations",
     },
