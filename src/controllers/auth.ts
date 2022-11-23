@@ -77,7 +77,6 @@ export const loginUser = async (req: Request, res: Response) => {
   return res
     .cookie("access_token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
     })
     .json({
       message: "Logged in successfully",
