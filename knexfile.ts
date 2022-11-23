@@ -7,7 +7,7 @@ export = {
       password: process.env.POSTGRES_PASSWORD || "password",
       port: process.env.POSTGRES_PORT || 5432,
       host: process.env.POSTGRES_HOST || "localhost",
-      ssl: { rejectUnauthorized: false },
+      ssl: false,
     },
     migrations: {
       directory: "./src/migrations",
@@ -19,7 +19,7 @@ export = {
   production: {
     client: "pg",
     connection: process.env.DATABASE_URL,
-    ssl: false,
+    ssl: true,
     migrations: {
       directory: "./src/migrations",
     },
