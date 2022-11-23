@@ -12,7 +12,7 @@ export const getTeamsByUserId = async (req: Request) => {
 };
 
 export const getTeamById = async (req: Request) => {
-	return await Team.query().findOne("id", req.body.id);
+	return await Team.query().findOne("id", req.params.id);
 };
 
 export const getTeamByName = async (req: Request) => {
