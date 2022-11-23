@@ -19,14 +19,12 @@ export = {
   production: {
     client: "pg",
     connection: process.env.DATABASE_URL,
+    ssl: false,
     migrations: {
       directory: "./src/migrations",
     },
     seeds: {
       directory: "./src/seeds",
-    },
-    ssl: {
-      rejectUnauthorized: false,
     },
     pool: {
       min: 2,
