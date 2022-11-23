@@ -5,7 +5,7 @@ export = {
       database: process.env.DATABASE_NAME || "postgres",
       user: process.env.POSTGRES_USER || "postgres",
       password: process.env.POSTGRES_PASSWORD || "password",
-      port: process.env.POSTGRES_PORT || 5432,
+      port: process.env.POSTGRES_PORT || 5433,
       host: process.env.POSTGRES_HOST || "localhost",
     },
     migrations: {
