@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(distDir));
 app.use("/", routes);
-console.log(process.env.DATABASE_URL);
+console.log(process.env.POSTGRES_USER);
 
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`);
