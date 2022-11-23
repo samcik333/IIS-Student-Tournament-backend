@@ -6,8 +6,12 @@ import knexConfiig from "../knexfile";
 import routes from "./routes/index";
 import bodyParser from "body-parser";
 import cors from "cors";
-
-const knex = Knex(knexConfiig.development);
+let knex;
+if (process.env.NODE_ENV == "production") {
+  knex = Knex(knexConfiig.production);
+} else {
+  knex = Knex(knexConfiig.development);
+}
 
 Model.knex(knex);
 
@@ -23,7 +27,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(distDir));
 app.use("/", routes);
-console.log(process.env.POSTGRES_USER);
+console.log(process.env.NODE_ENV);
 
 app.listen(PORT, () => {
   console.log(`app running on port ${PORT}`);
