@@ -26,8 +26,7 @@ export = {
       directory: "./src/seeds",
     },
     ssl: {
-      require: true,
-      rejectUnauthorized: true,
+      rejectUnauthorized: false,
     },
     pool: {
       min: 2,
