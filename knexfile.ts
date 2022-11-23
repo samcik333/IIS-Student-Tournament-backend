@@ -7,12 +7,6 @@ export = {
       password: process.env.POSTGRES_PASSWORD || "password",
       port: process.env.POSTGRES_PORT || 5432,
       host: process.env.POSTGRES_HOST || "localhost",
-      ssl: {
-        rejectUnauthorized: false,
-      },
-    },
-    ssl: {
-      rejectUnauthorized: false, // This line will fix new error
     },
     migrations: {
       directory: "./src/migrations",
@@ -32,7 +26,7 @@ export = {
     },
     ssl: {
       require: true,
-      rejectUnauthorized: true,
+      rejectUnauthorized: false,
     },
     pool: {
       min: 2,
