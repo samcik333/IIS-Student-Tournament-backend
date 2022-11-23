@@ -12,6 +12,10 @@ export = {
         process.env.POSTGRES_HOST ||
         "ec2-63-32-248-14.eu-west-1.compute.amazonaws.com",
     },
+    ssl: {
+      require: true, // This will help you. But you will see nwe error
+      rejectUnauthorized: false, // This line will fix new error
+    },
     migrations: {
       directory: "./src/migrations",
     },
@@ -33,7 +37,8 @@ export = {
       directory: "./src/seeds",
     },
     ssl: {
-      rejectUnauthorized: false,
+      require: true,
+      rejectUnauthorized: true,
     },
     pool: {
       min: 2,
