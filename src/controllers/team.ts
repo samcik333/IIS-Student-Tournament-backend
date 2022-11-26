@@ -1,6 +1,6 @@
 import { Express, Response, Request } from "express";
 import { saveTeam } from "../services/teamService/create";
-import { deleteTeamById } from "../services/teamService/delete";
+import { deleteTeamByName } from "../services/teamService/delete";
 import {
 	getTeamById,
 	getTeamByName,
@@ -72,13 +72,13 @@ export const updateTeam = async (req: Request, res: Response) => {
 
 /* DELETE TEAM */
 export const deleteTeam = async (req: Request, res: Response) => {
-	const delTeam = await deleteTeamById(req);
+	const delTeam = await deleteTeamByName(req);
 	if (!delTeam) {
 		return res.status(409).json({
-			message: "The team with given Id does not exist",
+			message: "The team with that name does not exist",
 		});
 	}
 	return res
 		.status(200)
-		.json({ message: "The team with Id " + req.params.id + " was deleted" });
+		.json({ message: "The team " + req.body.name + " was deleted" });
 };
