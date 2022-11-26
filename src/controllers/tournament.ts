@@ -19,8 +19,6 @@ export const info = async (req: Request, res: Response) => {
 };
 
 export const participants = async (req: Request, res: Response) => {
-  const result = await getParticipants(req.query);
-  const type = "team";
-  console.log(result);
-  return res.status(200).json({result, type:type});
+  const result = await getParticipants(req.query.id);
+  return res.status(200).json({result});
 };

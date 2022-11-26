@@ -1,10 +1,12 @@
-import { ParsedQs } from "qs";
-import Team from "../../models/teamModel";
-import User from "../../models/userModel";
+import Tournament from "../../models/tournamentModel";
 
-export const getParticipants = async (query: ParsedQs) => {
-    const value = '%' + query.id + '%';
-    const users = User.relatedQuery('users-tournaments-teams').for('tournamentId').where('tournamentId', 'like', value);
-    const teams = Team.relatedQuery('users-tournaments-teams').for('tournamentId').where('tournamentId', 'like', value);
-    return (await users).concat(await teams);
+export const getParticipants = async (id:any) => {
+    const value = Number(id);
+    const users = await Tournament.relatedQuery('players').for(value);
+    if(users.length != 0){
+        return {users, type:"users"};
+    }else{
+        const teams = await Tournament.relatedQuery('teams').for(value);
+        return {teams, type:"teams"};
+    }
 }
