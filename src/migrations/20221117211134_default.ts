@@ -65,6 +65,8 @@ export async function up(knex: Knex): Promise<void> {
 			table.datetime("date").notNullable();
 			table.integer("firstScore");
 			table.integer("secondScore");
+			table.integer("firstTeam");
+			table.integer("secondTeam");
 		})
 		.createTable("users-teams-matches", (table) => {
 			table.increments("id").primary().unique();
