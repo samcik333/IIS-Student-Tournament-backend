@@ -1,7 +1,7 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { fail, ok } from "assert";
-import { Request, Response } from "express";
+import {fail, ok} from "assert";
+import {Request, Response} from "express";
 
 const ajv = new Ajv();
 addFormats(ajv);
@@ -31,9 +31,6 @@ export const validateRegisterUser = async (
 				type: "string",
 				format: "password",
 				minLength: 8,
-			},
-			role: {
-				enum: ["admin", "user"],
 			},
 		},
 		required: ["name", "lastname", "username", "email", "password"],
@@ -82,6 +79,38 @@ export const validateTeam = async (req: Request, res: Response, next: any) => {
 		required: ["name"],
 	};
 	const valid = ajv.validate(teamSchema, req.body);
+	if (!valid) {
+		return res.status(400).send(ajv.errors);
+	}
+	return await next();
+};
+
+export const validateTournament = async (
+	req: Request,
+	res: Response,
+	next: any
+) => {
+	const tournamentSchema = {
+		type: "object",
+		properties: {
+			name: {
+				type: "string",
+			},
+			place: {
+				type: "string",
+			},
+			capacity: {
+				type: "integer",
+			},
+			players: {
+				type: "integer",
+			},
+		},
+		required: ["name", "place", "capacity", "players"],
+	};
+	const valid = ajv.validate(tournamentSchema, req.body);
+	console.log(ajv.errors);
+
 	if (!valid) {
 		return res.status(400).send(ajv.errors);
 	}
