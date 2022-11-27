@@ -9,6 +9,8 @@ export default class Match extends Model {
   date!: Date;
   firstScore: number = 0;
   secondScore: number = 0;
+  firstTeam!: number;
+  secondTeam!: number;
   static get tableName() {
     return "matches";
   }

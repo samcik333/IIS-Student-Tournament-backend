@@ -203,6 +203,8 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			firstScore: 1,
 			secondScore: 2,
+			firstTeam: 1234568,
+			secondTeam: 1234567,
 		},
 		{
 			id: 1234568,
@@ -210,6 +212,8 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			firstScore: 5,
 			secondScore: 6,
+			firstTeam: 1234567,
+			secondTeam: 1234568 ,
 		},
 		{
 			id: 1234569,
@@ -217,6 +221,8 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			firstScore: 3,
 			secondScore: 7,
+			firstTeam: 1234568,
+			secondTeam: 1234567,
 		},
 		{
 			id: 1234566,
@@ -224,6 +230,8 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			firstScore: 2,
 			secondScore: 5,
+			firstTeam: 1234567,
+			secondTeam: 1234568,
 		},
 	]);
 	await knex("users-teams-matches").insert([
