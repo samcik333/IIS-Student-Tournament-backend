@@ -9,6 +9,7 @@ export async function seed(knex: Knex): Promise<void> {
 	await knex("users-teams-matches").del();
 	await knex("users-tournaments-teams").del();
 	await knex("users-teams").del();
+	await knex("bracket").del();
 
 	// Inserts seed entries
 	await knex("users").insert([
@@ -200,20 +201,71 @@ export async function seed(knex: Knex): Promise<void> {
 			id: 1234567,
 			tournamentId: 1234567,
 			date: new Date(),
-			firstScore: 12,
-			secondScore: 10,
+			firstScore: 1,
+			secondScore: 2,
+		},
+		{
+			id: 1234568,
+			tournamentId: 1234567,
+			date: new Date(),
+			firstScore: 5,
+			secondScore: 6,
+		},
+		{
+			id: 1234569,
+			tournamentId: 1234567,
+			date: new Date(),
+			firstScore: 3,
+			secondScore: 7,
+		},
+		{
+			id: 1234566,
+			tournamentId: 1234567,
+			date: new Date(),
+			firstScore: 2,
+			secondScore: 5,
 		},
 	]);
 	await knex("users-teams-matches").insert([
 		{
 			id: 1234567,
 			matchId: 1234567,
-			teamId: 1234567,
+			teamId: 1234568,
 		},
 		{
 			id: 1234568,
-			matchId: 1234567,
+			matchId: 1234566,
 			teamId: 1234568,
+		},
+		{
+			id: 1234569,
+			matchId: 1234568,
+			teamId: 1234568,
+		},
+		{
+			id: 1234570,
+			matchId: 1234569,
+			teamId: 1234568,
+		},
+		{
+			id: 1234571,
+			matchId: 1234567,
+			teamId: 1234567,
+		},
+		{
+			id: 1234572,
+			matchId: 1234566,
+			teamId: 1234567,
+		},
+		{
+			id: 1234573,
+			matchId: 1234568,
+			teamId: 1234567,
+		},
+		{
+			id: 1234574,
+			matchId: 1234569,
+			teamId: 1234567,
 		},
 	]);
 	await knex("users-teams").insert([
@@ -248,6 +300,17 @@ export async function seed(knex: Knex): Promise<void> {
 			id: 1234568,
 			teamId: 1234567,
 			tournamentId: 1234567,
+		},
+	]);
+	await knex("bracket").insert([
+		{
+			id: 1234567,
+			tournamentId: 1234567,
+			final: [1234567,1234566],
+			bronze: [1234567,1234568],
+			eightfinals: [1234567,1234569,1234568,1234566,1234567,1234569,1234568,1234566,1234569,1234568,1234566,1234567,1234569,1234568,1234566,1234567],
+			quarterfinals: [1234568,1234566,1234567,1234569,1234568,1234566,1234569,1234568],
+			semifinals: [1234566,1234567,1234569,1234568]
 		},
 	]);
 }
