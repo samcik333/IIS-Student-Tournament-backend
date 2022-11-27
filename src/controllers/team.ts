@@ -2,6 +2,7 @@ import { Express, Response, Request } from "express";
 import { saveMember, saveTeam } from "../services/teamService/create";
 import { deleteMember, deleteTeamByName } from "../services/teamService/delete";
 import {
+	checkAdmin,
 	getMemberByUsername,
 	getOwnerByTeamId,
 	getPlayersByTeamId,
@@ -102,6 +103,11 @@ export const teamAddPlayer = async (req: Request, res: Response) => {
 	const userToAdd = await getUserByUsername(req);
 	if (!userToAdd) {
 		return res.status(400).json({ message: "User was not found" });
+	}
+
+	const isAdmin = await checkAdmin(req);
+	if (isAdmin) {
+		return res.status(400).json({ message: "Unable to add admin" });
 	}
 
 	const isMember = await getMemberByUsername(req);
