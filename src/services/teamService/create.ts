@@ -5,16 +5,38 @@ import User from "../../models/userModel";
 export const saveTeam = async (req: Request) => {
 	const { name, logo } = req.body;
 
-	await User.relatedQuery("teamsOwner").for(req.body.id).insert({ name, logo });
+	// Create team with ownerId and check if logo was provided
+	if (logo == "") {
+		await User.relatedQuery("teamsOwner").for(req.body.id).insert({ name });
+	} else {
+		await User.relatedQuery("teamsOwner")
+			.for(req.body.id)
+			.insert({ name, logo });
+	}
 
 	// Find id of team by name
-	const team = await Team.query().findOne("name", name).select("id");
+	const team = await Team.query().findOne("name", name);
 	if (!team?.id) {
 		return 0;
 	}
 
 	// Connect user with team
 	await User.relatedQuery("teams").for(req.body.id).relate(team.id);
+
+	return 1;
+};
+
+export const saveMember = async (req: Request) => {
+	const { username } = req.body;
+
+	// Find userId by username
+	const user = await User.query().findOne("username", username);
+	if (!user?.id) {
+		return 0;
+	}
+
+	// Connect user with team
+	await User.relatedQuery("teams").for(user.id).relate(req.params.id);
 
 	return 1;
 };
