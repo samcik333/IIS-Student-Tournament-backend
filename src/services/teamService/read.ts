@@ -56,3 +56,11 @@ export const getOwnerByTeamId = async (req: Request) => {
 	}
 	return owner;
 };
+
+export const checkAdmin = async (req: Request) => {
+	const { username } = req.body;
+	if (username == "admin") {
+		return 1;
+	}
+	return 0;
+};
