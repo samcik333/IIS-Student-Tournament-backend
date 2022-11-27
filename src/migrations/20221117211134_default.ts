@@ -107,6 +107,21 @@ export async function up(knex: Knex): Promise<void> {
 				.onDelete("CASCADE")
 				.index();
 		})
+		.createTable("bracket", (table) => {
+			table.increments("id").primary().unique();
+			table
+				.integer("tournamentId")
+				.unsigned()
+				.references("id")
+				.inTable("tournaments")
+				.onDelete("CASCADE")
+				.index();
+			table.specificType("final", "text [2]");
+			table.specificType("bronze", "text [2]");
+			table.specificType("semifinals", "text [4]");
+			table.specificType("eightfinals", "text [16]");
+			table.specificType("quarterfinals", "text [8]");
+		})
 		.createTable("users-tournaments-teams", (table) => {
 			table.increments("id").primary().unique();
 			table
@@ -138,6 +153,7 @@ export async function down(knex: Knex): Promise<void> {
 		await knex.schema.dropTableIfExists("users-teams"),
 		await knex.schema.dropTableIfExists("users-teams-matches"),
 		await knex.schema.dropTableIfExists("matches"),
+		await knex.schema.dropTableIfExists("bracket"),
 		await knex.schema.dropTableIfExists("tournaments"),
 		await knex.schema.dropTableIfExists("teams"),
 		await knex.schema.dropTableIfExists("users")
