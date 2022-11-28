@@ -11,6 +11,7 @@ import {
 	updateState,
 	deleteTournament,
 	deleteTournamentByAdmin,
+	schedule,
 } from "../controllers/tournament";
 const router = express.Router();
 
@@ -25,5 +26,7 @@ router.put("/tournamentState/:id", updateState);
 router.delete("/tournament/:id", deleteTournamentByAdmin);
 
 router.get("/bracket", bracket);
+
+router.post("/schedule", schedule);
 
 export default router;

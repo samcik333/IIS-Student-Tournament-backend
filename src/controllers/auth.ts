@@ -57,7 +57,6 @@ export const loginUser = async (req: Request, res: Response) => {
 	const {username, password} = req.body;
 
 	const userToLogin = await findRegisteredUser(username);
-
 	if (!userToLogin) {
 		return res.status(409).json({
 			message: "user does not exist",
@@ -65,13 +64,13 @@ export const loginUser = async (req: Request, res: Response) => {
 	}
 
 	const user = await findUserByUsername(username);
-
 	if (!user) {
 		return res.status(409).json({
 			message: "user does not exist",
 		});
 	}
 	const shouldLogin = await login(password, user);
+
 	if (!shouldLogin) {
 		return res.status(400).json({
 			message: "Invalid email or password",
