@@ -5,7 +5,8 @@ import {validateTournament} from "../middlewares/validate";
 import {
 	tournaments,
 	info,
-	participants, bracket,
+	participants,
+	bracket,
 	create,
 } from "../controllers/tournament";
 const router = express.Router();

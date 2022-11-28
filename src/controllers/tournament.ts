@@ -5,7 +5,7 @@ import {
 	findTournamentByName,
 } from "../services/tournamentService/find";
 import {getAll} from "../services/tournamentService/getAll";
-import { getBracket } from "../services/tournamentService/getBracket";
+import {getBracket} from "../services/tournamentService/getBracket";
 import {getParticipants} from "../services/tournamentService/getParticipants";
 
 export const tournaments = async (req: Request, res: Response) => {
