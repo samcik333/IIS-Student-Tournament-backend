@@ -75,6 +75,44 @@ export const bracket = async (req: Request, res: Response) => {
 	return res.status(200).send(result);
 };
 
+/* ADD PLAYER TO TOURNAMENT*/
+export const tournamentAddPlayer = async (req: Request, res: Response) => {
+	const isAdmin = await checkAdminById(req);
+
+	if (isAdmin) {
+		return res.status(400).json({ message: "Unable to join as admin" });
+	}
+
+	const isParticipating = await getParticipantById(req);
+	if (isParticipating) {
+		return res
+			.status(400)
+			.json({ message: "You are already participating in tournament" });
+	}
+
+	const newParticipant = await saveParticipant(req);
+	if (!newParticipant) {
+		return res.status(409).json({ message: "User was not added" });
+	}
+	return res.status(200).json({ message: "Succesfully joined" });
+};
+
+/* ADD TEAM TO TOURNAMENT */
+export const tournamentAddTeam = async (req: Request, res: Response) => {
+	const isParticipating = await getParticipatingTeamById(req);
+	if (isParticipating) {
+		return res
+			.status(400)
+			.json({ message: "Team is already participating in tournament" });
+	}
+
+	const newParticipatingTeam = await saveParticipatingTeam(req);
+	if (!newParticipatingTeam) {
+		return res.status(409).json({ message: "Team was not added" });
+	}
+	return res.status(200).json({ message: "Team succesfully joined" });
+};
+
 export const update = async (req: Request, res: Response) => {
 	const newTournament = await updateTournament(req);
 	if (!newTournament) {
