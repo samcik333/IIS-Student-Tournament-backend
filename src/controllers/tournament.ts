@@ -1,3 +1,4 @@
+
 import { Express, Response, Request } from "express";
 import {
 	checkAdminById,
@@ -11,7 +12,6 @@ import {
 } from "../services/tournamentService/create";
 import { deleteTeamById } from "../services/tournamentService/delete";
 import { deleteOneTournament } from "../services/tournamentService/delete";
-
 import {
 	findOwnerTournaments,
 	findTournament,
@@ -32,7 +32,7 @@ export const info = async (req: Request, res: Response) => {
 	const id = req.params["id"];
 	const result = await findTournament(id);
 	if (!result) {
-		return res.status(409).json({ message: "Tournament does not exist" });
+		return res.status(409).json({message: "Tournament does not exist"});
 	} else {
 		return res.status(200).send(result);
 	}
@@ -44,24 +44,24 @@ export const create = async (req: Request, res: Response) => {
 	if (tournamentToCreate) {
 		return res
 			.status(400)
-			.json({ message: "Tournament with that name already exist" });
+			.json({message: "Tournament with that name already exist"});
 	}
 
 	const newTournament = await createTournament(req);
 	if (!newTournament) {
-		return res.status(409).json({ message: "Tournament creation failed" });
+		return res.status(409).json({message: "Tournament creation failed"});
 	}
-	return res.status(200).json({ message: "Tournament was created" });
+	return res.status(200).json({message: "Tournament was created"});
 };
 
 export const participants = async (req: Request, res: Response) => {
 	const result = await getParticipants(req.query.id);
-	return res.status(200).json({ result });
+	return res.status(200).json({result});
 };
 
 export const updateState = async (req: Request, res: Response) => {
 	await stateUpdateToOpen(req);
-	return res.status(200).json({ message: "Team is in open state" });
+	return res.status(200).json({message: "Team is in open state"});
 };
 
 export const deleteTournamentByAdmin = async (req: Request, res: Response) => {
