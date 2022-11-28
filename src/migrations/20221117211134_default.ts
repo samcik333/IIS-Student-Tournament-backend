@@ -118,11 +118,11 @@ export async function up(knex: Knex): Promise<void> {
 				.inTable("tournaments")
 				.onDelete("CASCADE")
 				.index();
-			table.specificType("final", "text [2]");
-			table.specificType("bronze", "text [2]");
-			table.specificType("semifinals", "text [4]");
-			table.specificType("eightfinals", "text [16]");
-			table.specificType("quarterfinals", "text [8]");
+			table.specificType("final", "text [1]");
+			table.specificType("bronze", "text [1]");
+			table.specificType("semifinals", "text [2]");
+			table.specificType("eightfinals", "text [8]");
+			table.specificType("quarterfinals", "text [4]");
 		})
 		.createTable("users-tournaments-teams", (table) => {
 			table.increments("id").primary().unique();
