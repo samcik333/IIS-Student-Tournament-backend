@@ -9,4 +9,5 @@ export const getUserId = async (req: Request, res: Response) => {
 
 export const updateUser = async (req: Request, res: Response) => {
   const user = await updateUserInfo(req);
+  return res.status(200).send(user);
 };
