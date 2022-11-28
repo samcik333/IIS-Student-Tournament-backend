@@ -4,6 +4,7 @@ import { deleteMember, deleteTeamByName } from "../services/teamService/delete";
 import {
 	checkAdmin,
 	getMemberByUsername,
+	getOwnedTeamsByUserId,
 	getOwnerByTeamId,
 	getPlayersByTeamId,
 	getTeamById,
@@ -24,6 +25,16 @@ export const teamsAll = async (req: Request, res: Response) => {
 /* USER TEAMS */
 export const teamsOfUser = async (req: Request, res: Response) => {
 	const teams = await getTeamsByUserId(req);
+	if (teams) {
+		return res.status(200).send(teams);
+	} else {
+		return res.status(200);
+	}
+};
+
+/* USER OWNED TEAMS */
+export const ownedTeamsOfUser = async (req: Request, res: Response) => {
+	const teams = await getOwnedTeamsByUserId(req);
 	if (teams) {
 		return res.status(200).send(teams);
 	} else {
