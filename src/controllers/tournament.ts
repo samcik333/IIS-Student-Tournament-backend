@@ -44,7 +44,7 @@ export const create = async (req: Request, res: Response) => {
 	if (tournamentToCreate) {
 		return res
 			.status(400)
-			.json({message: "Tournament with that name already exist"});
+			.json({message: "Tournament with name already exist"});
 	}
 
 	const newTournament = await createTournament(req);

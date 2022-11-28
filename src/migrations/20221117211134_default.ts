@@ -28,6 +28,7 @@ export async function up(knex: Knex): Promise<void> {
 				.index();
 			table.string("name").notNullable().unique();
 			table.integer("capacity").notNullable();
+			table.integer("numberOfPlayers").notNullable();
 			table.string("logo");
 			table.integer("gold");
 			table.integer("silver");
@@ -49,6 +50,7 @@ export async function up(knex: Knex): Promise<void> {
 			table.datetime("date").notNullable();
 			table.integer("mode").notNullable();
 			table.integer("capacity").notNullable();
+			table.integer("numberOfPlayers").notNullable();
 			table.string("logo");
 			table.enum("state", ["waiting", "open", "closed"]);
 			table.string("description");

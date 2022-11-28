@@ -56,7 +56,7 @@ export const validateLoginUser = async (
 			password: {
 				type: "string",
 				format: "password",
-				minLength: 8,
+				minLength: 4,
 			},
 		},
 		required: ["username", "password"],

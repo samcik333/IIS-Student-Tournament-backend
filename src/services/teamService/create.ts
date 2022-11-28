@@ -1,17 +1,17 @@
-import { Request } from "express";
+import {Request} from "express";
 import Team from "../../models/teamModel";
 import User from "../../models/userModel";
 
 export const saveTeam = async (req: Request) => {
-	const { name, logo } = req.body;
+	const {name, logo} = req.body;
 
 	// Create team with ownerId and check if logo was provided
 	if (logo == "") {
-		await User.relatedQuery("teamsOwner").for(req.body.id).insert({ name });
+		await User.relatedQuery("teamsOwner").for(req.body.id).insert({name});
 	} else {
 		await User.relatedQuery("teamsOwner")
 			.for(req.body.id)
-			.insert({ name, logo });
+			.insert({name, logo});
 	}
 
 	// Find id of team by name
@@ -27,13 +27,18 @@ export const saveTeam = async (req: Request) => {
 };
 
 export const saveMember = async (req: Request) => {
-	const { username } = req.body;
+	const {username} = req.body;
 
 	// Find userId by username
 	const user = await User.query().findOne("username", username);
 	if (!user?.id) {
 		return 0;
 	}
+	const team = await Team.query().findById(req.params.id);
+	if (team?.capacity === team?.numberOfPlayers) {
+		return 0;
+	}
+	await Team.query().findById(req.params.id).increment("numberOfPlayers", 1);
 
 	// Connect user with team
 	await User.relatedQuery("teams").for(user.id).relate(req.params.id);

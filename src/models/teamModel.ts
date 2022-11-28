@@ -1,4 +1,4 @@
-import { Model } from "objection";
+import {Model} from "objection";
 import Match from "./matchModel";
 import Tournament from "./tournamentModel";
 import User from "./userModel";
@@ -8,6 +8,7 @@ export default class Team extends Model {
 	ownerId!: number;
 	name!: string;
 	capacity: number = 15;
+	numberOfPlayers: number = 1;
 	logo: string =
 		"https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png";
 	gold: number = 0;

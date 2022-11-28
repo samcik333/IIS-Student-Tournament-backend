@@ -1,4 +1,6 @@
-import { Request } from "express";
+import {Request} from "express";
+import Bracket from "../../models/bracketModel";
+import Tournament from "../../models/tournamentModel";
 import Team from "../../models/teamModel";
 import User from "../../models/userModel";
 
@@ -8,7 +10,6 @@ export const createTournament = async (req: Request) => {
 		logo =
 			"https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png";
 	}
-	console.log(req.body);
 	const userId = parseInt(req.body.id);
 	const tour = await User.relatedQuery("tournamentsOwner")
 		.for(userId)
@@ -20,6 +21,10 @@ export const createTournament = async (req: Request) => {
 			capacity,
 			mode,
 		});
+	console.log(tour);
+	if (tour) {
+		await Bracket.query().insert({tournamentId: tour.$id()});
+	}
 	return tour;
 };
 
