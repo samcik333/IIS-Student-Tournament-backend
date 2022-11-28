@@ -74,8 +74,8 @@ export const update = async (req: Request, res: Response) => {
 };
 
 export const ownerTournaments = async (req: Request, res: Response) => {
-	const result = await findOwnerTournaments(req.body.id);
-	return res.status(200).send(result);
+	const tournaments = await findOwnerTournaments(req.body.id);
+	return res.status(200).send(tournaments);
 };
 
 export const deleteTournament = async (req: Request, res: Response) => {
