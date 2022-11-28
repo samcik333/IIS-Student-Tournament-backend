@@ -3,7 +3,6 @@ import { getMacth } from "../services/matchService/getMatch";
 
 
 export const match = async (req: Request, res: Response) => {
-    console.log(req);
     const user = await getMacth(req.params['id']);
     if (!user) {
       return res.status(409).json({ message: "user does not exist" });
