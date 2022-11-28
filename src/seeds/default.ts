@@ -135,8 +135,8 @@ export async function seed(knex: Knex): Promise<void> {
 			name: "LOL turnaj",
 			place: "PPV A03",
 			date: new Date(),
-			mode: 2,
-			capacity: 2,
+			mode: 5,
+			capacity: 8,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "waiting",
 		},
@@ -157,7 +157,7 @@ export async function seed(knex: Knex): Promise<void> {
 			name: "CSGO",
 			place: "PPV A05",
 			date: new Date(),
-			mode: 1,
+			mode: 5,
 			capacity: 8,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "open",
@@ -195,6 +195,17 @@ export async function seed(knex: Knex): Promise<void> {
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "open",
 		},
+		{
+			id: 1234561,
+			ownerId: 1234569,
+			name: "Šípky",
+			place: "Purkyne",
+			date: new Date(),
+			mode: 1,
+			capacity: 16,
+			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
+			state: "open",
+		},
 	]);
 	await knex("matches").insert([
 		{
@@ -213,7 +224,7 @@ export async function seed(knex: Knex): Promise<void> {
 			firstScore: 5,
 			secondScore: 6,
 			firstTeam: 1234567,
-			secondTeam: 1234568 ,
+			secondTeam: 1234568,
 		},
 		{
 			id: 1234569,
@@ -316,9 +327,11 @@ export async function seed(knex: Knex): Promise<void> {
 			tournamentId: 1234567,
 			final: [1234567],
 			bronze: [1234567],
-			eightfinals: [1234567,1234569,1234568,1234566,1234567,1234569,1234568,1234566],
-			quarterfinals: [1234568,1234566,1234567,1234569],
-			semifinals: [1234566,1234567]
+			eightfinals: [
+				1234567, 1234569, 1234568, 1234566, 1234567, 1234569, 1234568, 1234566,
+			],
+			quarterfinals: [1234568, 1234566, 1234567, 1234569],
+			semifinals: [1234566, 1234567],
 		},
 	]);
 }

@@ -1,17 +1,27 @@
-import {Express, Response, Request} from "express";
-import {createTournament} from "../services/tournamentService/create";
-import {deleteTeamById} from "../services/tournamentService/delete";
-import {deleteOneTournament} from "../services/tournamentService/delete";
+
+import { Express, Response, Request } from "express";
+import {
+	checkAdminById,
+	getParticipantById,
+	getParticipatingTeamById,
+} from "../services/teamService/read";
+import {
+	createTournament,
+	saveParticipant,
+	saveParticipatingTeam,
+} from "../services/tournamentService/create";
+import { deleteTeamById } from "../services/tournamentService/delete";
+import { deleteOneTournament } from "../services/tournamentService/delete";
 import {
 	findOwnerTournaments,
 	findTournament,
 	findTournamentByName,
 } from "../services/tournamentService/find";
-import {getAll} from "../services/tournamentService/getAll";
-import {getBracket} from "../services/tournamentService/getBracket";
-import {getParticipants} from "../services/tournamentService/getParticipants";
-import {stateUpdateToOpen} from "../services/tournamentService/stateChange";
-import {updateTournament} from "../services/tournamentService/udate";
+import { getAll } from "../services/tournamentService/getAll";
+import { getBracket } from "../services/tournamentService/getBracket";
+import { getParticipants } from "../services/tournamentService/getParticipants";
+import { stateUpdateToOpen } from "../services/tournamentService/stateChange";
+import { updateTournament } from "../services/tournamentService/udate";
 
 export const tournaments = async (req: Request, res: Response) => {
 	const result = await getAll(req.query);
@@ -56,7 +66,7 @@ export const updateState = async (req: Request, res: Response) => {
 
 export const deleteTournamentByAdmin = async (req: Request, res: Response) => {
 	await deleteTeamById(req);
-	return res.status(200).json({message: "Tournament was deleted"});
+	return res.status(200).json({ message: "Tournament was deleted" });
 };
 
 export const bracket = async (req: Request, res: Response) => {
@@ -65,17 +75,55 @@ export const bracket = async (req: Request, res: Response) => {
 	return res.status(200).send(result);
 };
 
+/* ADD PLAYER TO TOURNAMENT*/
+export const tournamentAddPlayer = async (req: Request, res: Response) => {
+	const isAdmin = await checkAdminById(req);
+
+	if (isAdmin) {
+		return res.status(400).json({ message: "Unable to join as admin" });
+	}
+
+	const isParticipating = await getParticipantById(req);
+	if (isParticipating) {
+		return res
+			.status(400)
+			.json({ message: "You are already participating in tournament" });
+	}
+
+	const newParticipant = await saveParticipant(req);
+	if (!newParticipant) {
+		return res.status(409).json({ message: "User was not added" });
+	}
+	return res.status(200).json({ message: "Succesfully joined" });
+};
+
+/* ADD TEAM TO TOURNAMENT */
+export const tournamentAddTeam = async (req: Request, res: Response) => {
+	const isParticipating = await getParticipatingTeamById(req);
+	if (isParticipating) {
+		return res
+			.status(400)
+			.json({ message: "Team is already participating in tournament" });
+	}
+
+	const newParticipatingTeam = await saveParticipatingTeam(req);
+	if (!newParticipatingTeam) {
+		return res.status(409).json({ message: "Team was not added" });
+	}
+	return res.status(200).json({ message: "Team succesfully joined" });
+};
+
 export const update = async (req: Request, res: Response) => {
 	const newTournament = await updateTournament(req);
 	if (!newTournament) {
-		return res.status(409).json({message: "Tournament update failed"});
+		return res.status(409).json({ message: "Tournament update failed" });
 	}
-	return res.status(200).json({message: "Tournament was updated"});
+	return res.status(200).json({ message: "Tournament was updated" });
 };
 
 export const ownerTournaments = async (req: Request, res: Response) => {
-	const tournaments = await findOwnerTournaments(req.body.id);
-	return res.status(200).send(tournaments);
+	const result = await findOwnerTournaments(req.body.id);
+	return res.status(200).send(result);
 };
 
 export const deleteTournament = async (req: Request, res: Response) => {
@@ -84,7 +132,7 @@ export const deleteTournament = async (req: Request, res: Response) => {
 		await deleteOneTournament(req.query.id);
 		return res
 			.status(200)
-			.send({message: "Tournament was successfully deleted"});
+			.send({ message: "Tournament was successfully deleted" });
 	}
-	return res.status(400).send({message: "Error with deleting Tournament"});
+	return res.status(400).send({ message: "Error with deleting Tournament" });
 };

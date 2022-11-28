@@ -1,4 +1,5 @@
-import {Request} from "express";
+import { Request } from "express";
+import Team from "../../models/teamModel";
 import User from "../../models/userModel";
 
 export const createTournament = async (req: Request) => {
@@ -20,4 +21,18 @@ export const createTournament = async (req: Request) => {
 			mode,
 		});
 	return tour;
+};
+
+export const saveParticipant = async (req: Request) => {
+	// Connect user with tournament
+	return await User.relatedQuery("tournaments")
+		.for(req.body.id)
+		.relate(req.params.id);
+};
+
+export const saveParticipatingTeam = async (req: Request) => {
+	// Connect team with tournament
+	return await Team.relatedQuery("tournaments")
+		.for(req.body.teamId)
+		.relate(req.params.id);
 };

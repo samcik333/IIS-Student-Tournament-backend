@@ -11,6 +11,7 @@ import {
 	deletePlayer,
 	playerInfo,
 	teamOwner,
+	ownedTeamsOfUser,
 } from "../controllers/team";
 import { authorization } from "../middlewares/authorization";
 import { validateTeam } from "../middlewares/validate";
@@ -18,6 +19,7 @@ const router = express.Router();
 
 router.get("/teamsAll", teamsAll);
 router.get("/teams", authorization, teamsOfUser);
+router.get("/ownedTeams", authorization, ownedTeamsOfUser);
 router.get("/team/:id", teamInfo);
 router.get("/teamPlayer/:id", playerInfo);
 router.get("/teamPlayerList/:id", teamPlayerList);
