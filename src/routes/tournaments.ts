@@ -10,6 +10,7 @@ import {
 	create,
 	updateState,
 	deleteTournament,
+	deleteTournamentByAdmin,
 } from "../controllers/tournament";
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.post("/tournaments", authorization, validateTournament, create);
 
 router.put("/tournamentState/:id", updateState);
 
-router.delete("/tournament/:id", deleteTournament);
+router.delete("/tournament/:id", deleteTournamentByAdmin);
 
 router.get("/bracket", bracket);
 
