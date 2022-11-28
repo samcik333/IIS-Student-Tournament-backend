@@ -1,9 +1,9 @@
-import { Request } from "express";
+import {Request} from "express";
 import Team from "../../models/teamModel";
 import User from "../../models/userModel";
 
 export const deleteTeamByName = async (req: Request) => {
-	const { name } = req.body;
+	const {name} = req.body;
 	return Team.query()
 		.where("ownerId", req.body.id)
 		.where("name", name)
@@ -11,12 +11,13 @@ export const deleteTeamByName = async (req: Request) => {
 };
 
 export const deleteMember = async (req: Request) => {
-	const { username } = req.body;
+	const {username} = req.body;
 
 	const user = await User.query().findOne("username", username);
 	if (!user?.id) {
 		return 0;
 	}
+	await Team.query().findById(req.params.id).decrement("numberOfPlayers", 1);
 
 	// Remove user from team
 	await Team.relatedQuery("players")

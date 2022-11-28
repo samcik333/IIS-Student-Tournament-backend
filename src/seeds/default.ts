@@ -1,4 +1,4 @@
-import { Knex } from "knex";
+import {Knex} from "knex";
 
 export async function seed(knex: Knex): Promise<void> {
 	// Deletes ALL existing entries
@@ -19,10 +19,10 @@ export async function seed(knex: Knex): Promise<void> {
 			lastname: "admin",
 			username: "admin",
 			email: "admin@gmail.com",
-			password: "$2b$10$WbhwUypOumFjw8lklLGGfuK5M7zkqSaMBZdrD276HZnS4.N0axXCu", //12345678
+			password:
+				"$2b$10$tChjUcdkmEKBK/lTGFHqquUJJhuQqST3EL3PduUx/ln7eZjOVsrGu", //admin
 			role: "admin",
-			photo:
-				"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+			photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
 			gold: 0,
 			silver: 0,
 			bronze: 0,
@@ -35,10 +35,10 @@ export async function seed(knex: Knex): Promise<void> {
 			lastname: "Mrkvička",
 			username: "janko1",
 			email: "janko@gmail.com",
-			password: "$2b$10$WbhwUypOumFjw8lklLGGfuK5M7zkqSaMBZdrD276HZnS4.N0axXCu", // 12345678
+			password:
+				"$2b$10$WbhwUypOumFjw8lklLGGfuK5M7zkqSaMBZdrD276HZnS4.N0axXCu", // 12345678
 			role: "user",
-			photo:
-				"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+			photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
 			gold: 3,
 			silver: 1,
 			bronze: 0,
@@ -51,10 +51,10 @@ export async function seed(knex: Knex): Promise<void> {
 			lastname: "Pavol",
 			username: "pavol1",
 			email: "pavol@gmail.com",
-			password: "$2b$10$WbhwUypOumFjw8lklLGGfuK5M7zkqSaMBZdrD276HZnS4.N0axXCu", //12345678
+			password:
+				"$2b$10$WbhwUypOumFjw8lklLGGfuK5M7zkqSaMBZdrD276HZnS4.N0axXCu", //12345678
 			role: "user",
-			photo:
-				"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+			photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
 			gold: 3,
 			silver: 1,
 			bronze: 0,
@@ -67,10 +67,10 @@ export async function seed(knex: Knex): Promise<void> {
 			lastname: "Uhorka",
 			username: "janko2",
 			email: "janko2@gmail.com",
-			password: "$2b$10$WbhwUypOumFjw8lklLGGfuK5M7zkqSaMBZdrD276HZnS4.N0axXCu", //12345678
+			password:
+				"$2b$10$WbhwUypOumFjw8lklLGGfuK5M7zkqSaMBZdrD276HZnS4.N0axXCu", //12345678
 			role: "user",
-			photo:
-				"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+			photo: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
 			gold: 3,
 			silver: 1,
 			bronze: 0,
@@ -84,6 +84,7 @@ export async function seed(knex: Knex): Promise<void> {
 			ownerId: 1000,
 			name: "Jankov tím 1",
 			capacity: 15,
+			numberOfPlayers: 1,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			gold: 3,
 			silver: 1,
@@ -96,6 +97,7 @@ export async function seed(knex: Knex): Promise<void> {
 			ownerId: 1000,
 			name: "Jankov tím 2",
 			capacity: 15,
+			numberOfPlayers: 1,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			gold: 3,
 			silver: 1,
@@ -108,6 +110,7 @@ export async function seed(knex: Knex): Promise<void> {
 			ownerId: 1234569,
 			name: "Oštinohy",
 			capacity: 15,
+			numberOfPlayers: 15,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			gold: 3,
 			silver: 1,
@@ -120,6 +123,7 @@ export async function seed(knex: Knex): Promise<void> {
 			ownerId: 1234568,
 			name: "Oštiruky",
 			capacity: 15,
+			numberOfPlayers: 1,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			gold: 3,
 			silver: 1,
@@ -137,6 +141,7 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			mode: 5,
 			capacity: 8,
+			numberOfPlayers: 1,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "waiting",
 		},
@@ -148,6 +153,7 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			mode: 2,
 			capacity: 2,
+			numberOfPlayers: 0,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "waiting",
 		},
@@ -159,6 +165,7 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			mode: 5,
 			capacity: 8,
+			numberOfPlayers: 4,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "open",
 		},
@@ -170,6 +177,7 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			mode: 2,
 			capacity: 2,
+			numberOfPlayers: 1,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "open",
 		},
@@ -181,6 +189,7 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			mode: 1,
 			capacity: 16,
+			numberOfPlayers: 16,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "closed",
 		},
@@ -192,6 +201,18 @@ export async function seed(knex: Knex): Promise<void> {
 			date: new Date(),
 			mode: 5,
 			capacity: 8,
+			numberOfPlayers: 7,
+			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
+			state: "open",
+		},
+		{
+			id: 1234561,
+			ownerId: 1234569,
+			name: "Šípky",
+			place: "Purkyne",
+			date: new Date(),
+			mode: 1,
+			capacity: 16,
 			logo: "https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png",
 			state: "open",
 		},
@@ -328,7 +349,8 @@ export async function seed(knex: Knex): Promise<void> {
 			final: [1234567],
 			bronze: [1234567],
 			eightfinals: [
-				1234567, 1234569, 1234568, 1234566, 1234567, 1234569, 1234568, 1234566,
+				1234567, 1234569, 1234568, 1234566, 1234567, 1234569, 1234568,
+				1234566,
 			],
 			quarterfinals: [1234568, 1234566, 1234567, 1234569],
 			semifinals: [1234566, 1234567],

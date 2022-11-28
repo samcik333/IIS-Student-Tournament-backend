@@ -1,6 +1,6 @@
-import { Express, Response, Request } from "express";
-import { saveMember, saveTeam } from "../services/teamService/create";
-import { deleteMember, deleteTeamByName } from "../services/teamService/delete";
+import {Express, Response, Request} from "express";
+import {saveMember, saveTeam} from "../services/teamService/create";
+import {deleteMember, deleteTeamByName} from "../services/teamService/delete";
 import {
 	checkAdmin,
 	getMemberByUsername,
@@ -14,7 +14,7 @@ import {
 	getUserById,
 	getUserByUsername,
 } from "../services/teamService/read";
-import { updateTeamById } from "../services/teamService/update";
+import {updateTeamById} from "../services/teamService/update";
 
 /* ALL TEAMS */
 export const teamsAll = async (req: Request, res: Response) => {
@@ -46,7 +46,7 @@ export const ownedTeamsOfUser = async (req: Request, res: Response) => {
 export const teamInfo = async (req: Request, res: Response) => {
 	const team = await getTeamById(req);
 	if (!team) {
-		return res.status(409).json({ message: "Team does not exist" });
+		return res.status(409).json({message: "Team does not exist"});
 	}
 	return res.status(200).send(team);
 };
@@ -55,7 +55,7 @@ export const teamInfo = async (req: Request, res: Response) => {
 export const teamPlayerList = async (req: Request, res: Response) => {
 	const playerList = await getPlayersByTeamId(req);
 	if (!playerList) {
-		return res.status(409).json({ message: "There are no players here" });
+		return res.status(409).json({message: "There are no players here"});
 	}
 	return res.status(200).send(playerList);
 };
@@ -66,14 +66,14 @@ export const createTeam = async (req: Request, res: Response) => {
 	if (teamToCreate) {
 		return res
 			.status(400)
-			.json({ message: "Team with that name already exist" });
+			.json({message: "Team with that name already exist"});
 	}
 
 	const newTeam = await saveTeam(req);
 	if (!newTeam) {
-		return res.status(409).json({ message: "Team creation failed" });
+		return res.status(409).json({message: "Team creation failed"});
 	}
-	return res.status(200).json({ message: "Team was created" });
+	return res.status(200).json({message: "Team was created"});
 };
 
 /* UPDATE TEAM */
@@ -82,18 +82,18 @@ export const updateTeam = async (req: Request, res: Response) => {
 	if (teamToUpdate) {
 		return res
 			.status(400)
-			.json({ message: "Team with that name already exist" });
+			.json({message: "Team with that name already exist"});
 	}
 
 	const team = await updateTeamById(req);
 	if (!team) {
 		return res
 			.status(409)
-			.json({ message: "The team with given Id does not exist" });
+			.json({message: "The team with given Id does not exist"});
 	}
 	return res
 		.status(200)
-		.json({ message: "The team with Id " + req.params.id + " was updated" });
+		.json({message: "The team with Id " + req.params.id + " was updated"});
 };
 
 /* DELETE TEAM */
@@ -106,31 +106,33 @@ export const deleteTeam = async (req: Request, res: Response) => {
 	}
 	return res
 		.status(200)
-		.json({ message: "The team " + req.body.name + " was deleted" });
+		.json({message: "The team " + req.body.name + " was deleted"});
 };
 
 /* ADD PLAYER */
 export const teamAddPlayer = async (req: Request, res: Response) => {
 	const userToAdd = await getUserByUsername(req);
 	if (!userToAdd) {
-		return res.status(400).json({ message: "User was not found" });
+		return res.status(400).json({message: "User was not found"});
 	}
 
 	const isAdmin = await checkAdmin(req);
 	if (isAdmin) {
-		return res.status(400).json({ message: "Unable to add admin" });
+		return res.status(400).json({message: "Unable to add admin"});
 	}
 
 	const isMember = await getMemberByUsername(req);
 	if (isMember) {
-		return res.status(400).json({ message: "User is already member of team" });
+		return res
+			.status(400)
+			.json({message: "User is already member of team"});
 	}
 
 	const newMember = await saveMember(req);
 	if (!newMember) {
-		return res.status(409).json({ message: "User was not added" });
+		return res.status(409).json({message: "User was not added"});
 	}
-	return res.status(200).json({ message: "User was added" });
+	return res.status(200).json({message: "User was added"});
 };
 
 /* DELETE PLAYER */
@@ -143,14 +145,14 @@ export const deletePlayer = async (req: Request, res: Response) => {
 	}
 	return res
 		.status(200)
-		.json({ message: "User " + req.body.username + " was deleted" });
+		.json({message: "User " + req.body.username + " was deleted"});
 };
 
 /* PLAYER INFO */
 export const playerInfo = async (req: Request, res: Response) => {
 	const user = await getUserById(req);
 	if (!user) {
-		return res.status(409).json({ message: "Player does not exist" });
+		return res.status(409).json({message: "Player does not exist"});
 	}
 	return res.status(200).send(user);
 };
@@ -159,7 +161,7 @@ export const playerInfo = async (req: Request, res: Response) => {
 export const teamOwner = async (req: Request, res: Response) => {
 	const owner = await getOwnerByTeamId(req);
 	if (!owner) {
-		return res.status(409).json({ message: "Owner does not exist" });
+		return res.status(409).json({message: "Owner does not exist"});
 	}
 	return res.status(200).send(owner);
 };

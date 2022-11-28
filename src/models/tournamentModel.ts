@@ -1,4 +1,5 @@
 import {Model} from "objection";
+import Bracket from "./bracketModel";
 import Match from "./matchModel";
 import Team from "./teamModel";
 import User from "./userModel";
@@ -11,6 +12,7 @@ export default class Tournament extends Model {
 	place!: string;
 	mode!: number;
 	capacity!: number;
+	numberOfPlayers: number = 0;
 	logo: string =
 		"https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png";
 	state: "waiting" | "open" | "closed" = "waiting";
@@ -63,6 +65,14 @@ export default class Tournament extends Model {
 						to: "users-tournaments-teams.teamId",
 					},
 					to: "teams.id",
+				},
+			},
+			bracket: {
+				relation: Model.HasManyRelation,
+				modelClass: Bracket,
+				join: {
+					from: "tournaments.id",
+					to: " bracket.tournamentId",
 				},
 			},
 		};
