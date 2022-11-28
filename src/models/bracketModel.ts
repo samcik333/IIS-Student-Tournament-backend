@@ -4,11 +4,11 @@ import Tournament from "./tournamentModel";
 export default class Bracket extends Model {
     id!: number;
     tournamentId!: number;
-    final!: string[2];
-    bronze!: string[2];
-    eightfinals!:string[16];
-    quarterfinals!:string[8];
-    semifinals!:string[4];
+    final!: string[1];
+    bronze!: string[1];
+    eightfinals!:string[8];
+    quarterfinals!:string[4];
+    semifinals!:string[2];
     static get tableName() {
       return "bracket";
     }
