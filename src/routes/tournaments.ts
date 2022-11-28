@@ -14,6 +14,7 @@ import {
 const router = express.Router();
 
 router.get("/tournament/:id", info);
+
 router.get("/participants", participants);
 
 router.post("/tournaments", authorization, validateTournament, create);
