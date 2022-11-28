@@ -47,7 +47,7 @@ export async function up(knex: Knex): Promise<void> {
 			table.string("name").notNullable();
 			table.string("place").notNullable();
 			table.datetime("date").notNullable();
-			table.integer("players").notNullable();
+			table.integer("mode").notNullable();
 			table.integer("capacity").notNullable();
 			table.string("logo");
 			table.enum("state", ["waiting", "open", "closed"]);

@@ -102,11 +102,11 @@ export const validateTournament = async (
 			capacity: {
 				type: "integer",
 			},
-			players: {
+			mode: {
 				type: "integer",
 			},
 		},
-		required: ["name", "place", "capacity", "players"],
+		required: ["name", "place", "capacity", "mode"],
 	};
 	const valid = ajv.validate(tournamentSchema, req.body);
 	console.log(ajv.errors);
