@@ -11,6 +11,7 @@ import {
 	updateState,
 	deleteTournament,
 	deleteTournamentByAdmin,
+	schedule,
 	tournamentAddPlayer,
 	tournamentAddTeam,
 	deleteTeamFromTournament,
@@ -33,5 +34,7 @@ router.put("/tournamentState/:id", updateState);
 router.delete("/tournament/:id", deleteTournamentByAdmin);
 
 router.get("/bracket", bracket);
+
+router.post("/schedule", schedule);
 
 export default router;
