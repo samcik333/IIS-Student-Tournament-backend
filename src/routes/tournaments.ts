@@ -1,7 +1,7 @@
 import express from "express";
 
-import {authorization} from "../middlewares/authorization";
-import {validateTournament} from "../middlewares/validate";
+import { authorization } from "../middlewares/authorization";
+import { validateTournament } from "../middlewares/validate";
 import {
 	tournaments,
 	info,
@@ -13,8 +13,6 @@ import {
 	tournamentAddPlayer,
 	tournamentAddTeam,
 	deleteTournamentByAdmin,
-	tournamentAddPlayer,
-	tournamentAddTeam,
 } from "../controllers/tournament";
 const router = express.Router();
 
