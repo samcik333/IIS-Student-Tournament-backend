@@ -9,7 +9,7 @@ export default class Tournament extends Model {
 	name!: string;
 	date: Date = new Date();
 	place!: string;
-	players!: number;
+	mode!: number;
 	capacity!: number;
 	logo: string =
 		"https://www.pngkey.com/png/detail/66-661551_white-blank-shield-logo-school-logo-template-free.png";

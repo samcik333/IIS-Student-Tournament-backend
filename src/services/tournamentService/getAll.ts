@@ -1,4 +1,4 @@
-import { ParsedQs } from "qs";
+import {ParsedQs} from "qs";
 import Tournament from "../../models/tournamentModel";
 
 export const getAll = async (query: ParsedQs) => {
