@@ -10,8 +10,6 @@ import {
 	create,
 	updateState,
 	deleteTournament,
-	tournamentAddPlayer,
-	tournamentAddTeam,
 	deleteTournamentByAdmin,
 	tournamentAddPlayer,
 	tournamentAddTeam,
