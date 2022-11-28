@@ -1,7 +1,7 @@
 import express from "express";
 
-import { authorization } from "../middlewares/authorization";
-import { validateTournament } from "../middlewares/validate";
+import {authorization} from "../middlewares/authorization";
+import {validateTournament} from "../middlewares/validate";
 import {
 	tournaments,
 	info,
