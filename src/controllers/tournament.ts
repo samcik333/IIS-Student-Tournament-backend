@@ -75,6 +75,30 @@ export const bracket = async (req: Request, res: Response) => {
 	return res.status(200).send(result);
 };
 
+export const update = async (req: Request, res: Response) => {
+	const newTournament = await updateTournament(req);
+	if (!newTournament) {
+		return res.status(409).json({ message: "Tournament update failed" });
+	}
+	return res.status(200).json({ message: "Tournament was updated" });
+};
+
+export const ownerTournaments = async (req: Request, res: Response) => {
+	const result = await findOwnerTournaments(req.body.id);
+	return res.status(200).send(result);
+};
+
+export const deleteTournament = async (req: Request, res: Response) => {
+	console.log(req.query);
+	if (req.query.id) {
+		await deleteOneTournament(req.query.id);
+		return res
+			.status(200)
+			.send({ message: "Tournament was successfully deleted" });
+	}
+	return res.status(400).send({ message: "Error with deleting Tournament" });
+};
+
 /* ADD PLAYER TO TOURNAMENT*/
 export const tournamentAddPlayer = async (req: Request, res: Response) => {
 	const isAdmin = await checkAdminById(req);
