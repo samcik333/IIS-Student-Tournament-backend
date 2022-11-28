@@ -14,6 +14,6 @@ router.get("/users", getUsers);
 
 router.patch("/user/profile", authorization, updateUser);
 
-router.delete("/delUser", deleteUser);
+router.delete("/user", deleteUser);
 
 export default router;
