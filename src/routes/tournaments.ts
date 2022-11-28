@@ -6,6 +6,7 @@ import {
 	tournaments,
 	info,
 	participants,
+	bracket,
 	create,
 	updateState,
 	deleteTournament,
@@ -20,5 +21,7 @@ router.post("/tournaments", authorization, validateTournament, create);
 router.put("/tournamentState/:id", updateState);
 
 router.delete("/tournament/:id", deleteTournament);
+
+router.get("/bracket", bracket);
 
 export default router;

@@ -6,6 +6,7 @@ import {
 	findTournamentByName,
 } from "../services/tournamentService/find";
 import { getAll } from "../services/tournamentService/getAll";
+import { getBracket } from "../services/tournamentService/getBracket";
 import { getParticipants } from "../services/tournamentService/getParticipants";
 import { stateUpdateToOpen } from "../services/tournamentService/stateChange";
 
@@ -53,4 +54,10 @@ export const updateState = async (req: Request, res: Response) => {
 export const deleteTournament = async (req: Request, res: Response) => {
 	await deleteTeamById(req);
 	return res.status(200).json({ message: "Team was deleted" });
+};
+
+export const bracket = async (req: Request, res: Response) => {
+  const id = (req.query.id || "").toString();
+  const result = await getBracket(id);
+  return res.status(200).send(result);
 };
