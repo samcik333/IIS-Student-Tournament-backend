@@ -1,7 +1,7 @@
 import express from "express";
 
-import {authorization} from "../middlewares/authorization";
-import {validateTournament} from "../middlewares/validate";
+import { authorization } from "../middlewares/authorization";
+import { validateTournament } from "../middlewares/validate";
 import {
 	tournaments,
 	info,
@@ -12,6 +12,7 @@ import {
 	deleteTournament,
 	tournamentAddPlayer,
 	tournamentAddTeam,
+	deleteTournamentByAdmin,
 } from "../controllers/tournament";
 const router = express.Router();
 
@@ -24,7 +25,7 @@ router.post("/tournamentAddTeam/:id", tournamentAddTeam);
 
 router.put("/tournamentState/:id", updateState);
 
-router.delete("/tournament/:id", deleteTournament);
+router.delete("/tournament/:id", deleteTournamentByAdmin);
 
 router.get("/bracket", bracket);
 
