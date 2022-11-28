@@ -13,6 +13,8 @@ import {
 	tournamentAddPlayer,
 	tournamentAddTeam,
 	deleteTournamentByAdmin,
+	tournamentAddPlayer,
+	tournamentAddTeam,
 } from "../controllers/tournament";
 const router = express.Router();
 
