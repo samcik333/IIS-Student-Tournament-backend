@@ -7,8 +7,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "rm -rf build && tsc",
 		"dev": "npm run build && nodemon -L -W src",
-		"start": "node build/src/index.js",
-		"heroku-postbuild": "knex migrate:down && knex migrate:up && knex: seed:run"
+		"start": "node build/src/index.js"
 	},
 	"repository": {
 		"type": "git",
