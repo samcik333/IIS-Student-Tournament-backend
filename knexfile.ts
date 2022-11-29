@@ -1,4 +1,4 @@
-module.exports = {
+export = {
 	development: {
 		client: "pg",
 		connection: {
