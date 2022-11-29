@@ -3,6 +3,7 @@ import { saveMatch } from "../services/matchService/create";
 import { getMacth } from "../services/matchService/getMatch";
 import { getAll } from "../services/matchService/getAll";
 import console from "console";
+import { updateMatch } from "../services/matchService/update";
 
 
 export const match = async (req: Request, res: Response) => {
@@ -30,4 +31,14 @@ export const matches = async (req: Request, res: Response) => {
     console.log(matches);
     return res.status(200).send(matches);
   }
+};
+
+export const update = async (req: Request, res: Response) => {
+	console.log(req);
+	const match = await updateMatch(req);
+	if (!match) {
+		return res.status(409).json({message: "Match does not exist"});
+	} else {
+		return res.status(200)
+	}
 };

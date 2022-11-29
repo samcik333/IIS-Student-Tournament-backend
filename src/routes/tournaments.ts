@@ -16,7 +16,6 @@ import {
 	tournamentAddTeam,
 	deleteTeamFromTournament,
 	deleteUserFromTournament,
-	schedule,
 } from "../controllers/tournament";
 const router = express.Router();
 
