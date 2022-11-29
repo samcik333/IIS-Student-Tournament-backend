@@ -14,10 +14,24 @@ export const deleteMember = async (req: Request) => {
 	const {username} = req.body;
 
 	const user = await User.query().findOne("username", username);
+
 	if (!user?.id) {
 		return 0;
 	}
-	await Team.query().findById(req.params.id).decrement("numberOfPlayers", 1);
+	const team = await Team.query().findById(req.params.id);
+	let numberOfPlayers = team?.numberOfPlayers;
+	if (numberOfPlayers) {
+		numberOfPlayers--;
+	}
+	await Team.query().findById(req.params.id).update({
+		numberOfPlayers,
+		gold: team?.gold,
+		silver: team?.silver,
+		bronze: team?.bronze,
+		logo: team?.logo,
+		numberOfGames: team?.numberOfGames,
+		numberOfWins: team?.numberOfWins,
+	});
 
 	// Remove user from team
 	await Team.relatedQuery("players")
