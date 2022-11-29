@@ -38,7 +38,19 @@ export const saveMember = async (req: Request) => {
 	if (team?.capacity === team?.numberOfPlayers) {
 		return 0;
 	}
-	await Team.query().findById(req.params.id).increment("numberOfPlayers", 1);
+	let numberOfPlayers = team?.numberOfPlayers;
+	if (numberOfPlayers) {
+		numberOfPlayers++;
+	}
+	await Team.query().findById(req.params.id).update({
+		numberOfPlayers,
+		gold: team?.gold,
+		silver: team?.silver,
+		bronze: team?.bronze,
+		logo: team?.logo,
+		numberOfGames: team?.numberOfGames,
+		numberOfWins: team?.numberOfWins,
+	});
 
 	// Connect user with team
 	await User.relatedQuery("teams").for(user.id).relate(req.params.id);
