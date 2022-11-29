@@ -13,6 +13,8 @@ import {
 	deleteTournamentByAdmin,
 	tournamentAddPlayer,
 	tournamentAddTeam,
+	deleteTeamFromTournament,
+	deleteUserFromTournament,
 } from "../controllers/tournament";
 const router = express.Router();
 
@@ -23,6 +25,8 @@ router.get("/participants", participants);
 router.post("/tournaments", authorization, validateTournament, create);
 router.post("/tournamentAddPlayer/:id", authorization, tournamentAddPlayer);
 router.post("/tournamentAddTeam/:id", tournamentAddTeam);
+router.delete("/tournamentDelTeam/:id", deleteTeamFromTournament);
+router.delete("/tournamentDelUser/:id", deleteUserFromTournament);
 
 router.put("/tournamentState/:id", updateState);
 

@@ -1,4 +1,5 @@
-import { Express, Response, Request } from "express";
+
+import {Express, Response, Request} from "express";
 import {
 	checkAdminById,
 	getParticipantById,
@@ -9,6 +10,12 @@ import {
 	saveParticipant,
 	saveParticipatingTeam,
 } from "../services/tournamentService/create";
+import {
+	deleteTeam,
+	deleteTeamById,
+	deleteUser,
+} from "../services/tournamentService/delete";
+import {deleteOneTournament} from "../services/tournamentService/delete";
 import {
 	findOwnerTournaments,
 	findTournament,
@@ -65,7 +72,26 @@ export const updateState = async (req: Request, res: Response) => {
 
 export const deleteTournamentByAdmin = async (req: Request, res: Response) => {
 	await deleteTeamById(req);
-	return res.status(200).send({ message: "Tournament was deleted" });
+	return res.status(200).json({message: "Tournament was deleted"});
+};
+
+export const deleteTeamFromTournament = async (req: Request, res: Response) => {
+	const team = await deleteTeam(req);
+	if (!team) {
+		return res
+			.status(400)
+			.send({message: "Team was not deleted from Tournament"});
+	}
+	return res.status(200).json({message: "Team was deleted from Tournament"});
+};
+export const deleteUserFromTournament = async (req: Request, res: Response) => {
+	const user = await deleteUser(req);
+	if (!user) {
+		return res
+			.status(400)
+			.send({message: "User was not deleted from Tournament"});
+	}
+	return res.status(200).json({message: "User was deleted from Tournament"});
 };
 
 export const bracket = async (req: Request, res: Response) => {
@@ -130,7 +156,7 @@ export const deleteTournament = async (req: Request, res: Response) => {
 		await deleteOneTournament(req.query.id);
 		return res
 			.status(200)
-			.send({ message: "Tournament was successfully deleted" });
+			.send({message: "Tournament was successfully deleted"});
 	}
-	return res.status(400).send({ message: "Error with deleting Tournament" });
+	return res.status(400).send({message: "Error with deleting Tournament"});
 };
