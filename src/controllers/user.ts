@@ -31,5 +31,5 @@ export const deleteUser = async (req: Request, res: Response) => {
 	await deleteUserByUsername(req);
 	return res
 		.status(200)
-		.json({ message: "User " + req.body.username + " was deleted" });
+		.send({ message: "User " + req.body.username + " was deleted" });
 };
