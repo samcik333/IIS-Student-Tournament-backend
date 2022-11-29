@@ -1,5 +1,5 @@
 import express from "express";
-import {deleteUser, getUserId, getUsers, updateUser} from "../controllers/user";
+import {deleteUser, getUserId, getUsers, updateUser, user} from "../controllers/user";
 import {
 	deleteTournament,
 	ownerTournaments,
@@ -9,6 +9,7 @@ import {authorization} from "../middlewares/authorization";
 const router = express.Router();
 
 router.get("/user", getUserId);
+router.get("/getuser/:id", user);
 router.get("/user/profile", authorization, getUserId);
 router.get("/users", getUsers);
 
@@ -18,5 +19,6 @@ router.delete("/user/tournaments", deleteTournament);
 router.patch("/user/profile", authorization, updateUser);
 
 router.delete("/user", deleteUser);
+
 
 export default router;

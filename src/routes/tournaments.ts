@@ -11,12 +11,15 @@ import {
 	updateState,
 	deleteTournament,
 	deleteTournamentByAdmin,
+	schedule,
 	tournamentAddPlayer,
 	tournamentAddTeam,
 	deleteTeamFromTournament,
 	deleteUserFromTournament,
 } from "../controllers/tournament";
 const router = express.Router();
+
+router.put("/bracket/update", schedule);
 
 router.get("/tournament/:id", info);
 
