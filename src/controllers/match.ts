@@ -19,7 +19,7 @@ export const createMatch = async (req: Request, res: Response) => {;
 	if (!newMatch) {
 		return res.status(409).json({ message: "Match creation failed" });
 	}
-	return res.status(200).json({ message: "Match was created" });
+	return res.status(200).json(newMatch);
 };
 
 export const matches = async (req: Request, res: Response) => {
@@ -27,6 +27,7 @@ export const matches = async (req: Request, res: Response) => {
   if (!matches) {
     return res.status(409).json({ message: "No matches found" });
   } else {
+    console.log(matches);
     return res.status(200).send(matches);
   }
 };

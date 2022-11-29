@@ -11,6 +11,7 @@ export default class Match extends Model {
   secondScore: number = 0;
   firstTeam!: number;
   secondTeam!: number;
+  order!: number;
   static get tableName() {
     return "matches";
   }

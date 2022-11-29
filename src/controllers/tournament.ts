@@ -1,3 +1,4 @@
+import console from "console";
 import {Express, Response, Request} from "express";
 import { updateBracket } from "../services/tournamentService/bracket";
 import {createTournament} from "../services/tournamentService/create";
@@ -93,5 +94,9 @@ export const deleteTournament = async (req: Request, res: Response) => {
 export const schedule = async (req: Request, res: Response) => {
 	console.log(req);
 	const schedule = await updateBracket(req);
-	return res.status(200).send(schedule);
+	if (!schedule) {
+		return res.status(409).json({message: "Bracket does not exist"});
+	} else {
+		return res.status(200)
+	}
 };
