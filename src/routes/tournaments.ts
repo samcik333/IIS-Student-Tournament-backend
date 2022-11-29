@@ -19,6 +19,8 @@ import {
 } from "../controllers/tournament";
 const router = express.Router();
 
+router.put("/bracket/update", schedule);
+
 router.get("/tournament/:id", info);
 
 router.get("/participants", participants);
@@ -34,7 +36,5 @@ router.put("/tournamentState/:id", updateState);
 router.delete("/tournament/:id", deleteTournamentByAdmin);
 
 router.get("/bracket", bracket);
-
-router.post("/schedule", schedule);
 
 export default router;
