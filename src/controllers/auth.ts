@@ -1,4 +1,4 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import {
 	findRegisteredUser,
@@ -6,20 +6,19 @@ import {
 } from "../services/userService/find";
 import registerUserService from "../services/registerService/registerUser";
 import encryptPassword from "../services/registerService/cryptPassword";
-import {login} from "../services/registerService/login";
+import { login } from "../services/registerService/login";
 
 export const registerUser = async (req: Request, res: Response) => {
-	const {name, lastname, username, email, password} = req.body;
+	const { name, lastname, username, email, password } = req.body;
 	const userToRegister = await findRegisteredUser(username, email);
-	console.log(req.body);
 
 	if (userToRegister === "username") {
 		return res.status(409).json({
-			message: "username already exists",
+			message: "Username already exists",
 		});
 	} else if (userToRegister === "email") {
 		return res.status(409).json({
-			message: "email already exists",
+			message: "Email already exists",
 		});
 	}
 
@@ -54,13 +53,13 @@ export const registerUser = async (req: Request, res: Response) => {
 };
 
 export const loginUser = async (req: Request, res: Response) => {
-	const {username, password} = req.body;
+	const { username, password } = req.body;
 
 	const userToLogin = await findRegisteredUser(username);
 
 	if (!userToLogin) {
 		return res.status(409).json({
-			message: "user does not exist",
+			message: "User does not exist",
 		});
 	}
 
@@ -68,13 +67,13 @@ export const loginUser = async (req: Request, res: Response) => {
 
 	if (!user) {
 		return res.status(409).json({
-			message: "user does not exist",
+			message: "User does not exist",
 		});
 	}
 	const shouldLogin = await login(password, user);
 	if (!shouldLogin) {
 		return res.status(400).json({
-			message: "Invalid email or password",
+			message: "Invalid username or password",
 		});
 	}
 	const token = jwt.sign(
