@@ -1,4 +1,4 @@
-export = {
+export default {
 	development: {
 		client: "pg",
 		connection: {
