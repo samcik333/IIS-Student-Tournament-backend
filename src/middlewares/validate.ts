@@ -1,7 +1,7 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import {fail, ok} from "assert";
-import {Request, Response} from "express";
+import { fail, ok } from "assert";
+import { Request, Response } from "express";
 
 const ajv = new Ajv();
 addFormats(ajv);
