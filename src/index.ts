@@ -25,19 +25,10 @@ var distDir = __dirname + "/dist/";
 
 app.set("trust proxy", 1); // trust first proxy
 app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", url); // update to match the domain you will make the request from
-	res.header(
-		"Access-Control-Allow-Headers",
-		"Origin, X-Requested-With, Content-Type, Accept Authorization"
-	);
-	res.header("Access-Control-Allow-Credentials", "true");
-	if (req.method === "OPTIONS") {
-		res.header(
-			"Access-Control-Allow-Methods",
-			"POST, PUT, PATCH, GET, DELETE"
-		);
-		return res.status(200).json({});
-	}
+	res.setHeader("Access-Control-Allow-Origin", url);
+	res.setHeader("Access-Control-Allow-Credentials", "true");
+	res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT,PATCH,DELETE");
+	res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin");
 
 	next();
 });
@@ -45,7 +36,7 @@ var corsOptions = {
 	origin: url,
 	optionsSuccessStatus: 200, // some legacy browsers, choke on 204
 };
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
