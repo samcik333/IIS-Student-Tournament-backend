@@ -11,10 +11,10 @@ let knex;
 let url: string | string[];
 if (process.env.NODE_ENV == "production") {
 	knex = Knex(knexConfiig.production);
-	url = "https://sjsquad.herokuapp.com";
+	url = "https://sjsquad.herokuapp.com/";
 } else {
 	knex = Knex(knexConfiig.development);
-	url = "http://localhost:4200";
+	url = "http://localhost:4200/";
 }
 
 Model.knex(knex);
@@ -25,7 +25,7 @@ var distDir = __dirname + "/dist/";
 
 app.set("trust proxy", 1); // trust first proxy
 app.use(function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+	res.header("Access-Control-Allow-Origin", url); // update to match the domain you will make the request from
 	res.header(
 		"Access-Control-Allow-Headers",
 		"Origin, X-Requested-With, Content-Type, Accept"
