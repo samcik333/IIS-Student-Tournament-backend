@@ -7,7 +7,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "rm -rf build && tsc",
 		"dev": "npm run build && nodemon -L -W src",
-		"start": "node build/src/index.js"
+		"start": "node build/index.js"
 	},
 	"repository": {
 		"type": "git",

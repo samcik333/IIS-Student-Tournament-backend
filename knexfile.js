@@ -1,5 +1,11 @@
-export default {
-	development: {
+// Update with your config settings.
+
+/**
+ * @type { Object.<string, import("knex").Knex.Config> }
+ */
+module.exports = {
+
+  development: {
 		client: "pg",
 		connection: {
 			database: process.env.DATABASE_NAME || "postgres",
@@ -21,14 +27,15 @@ export default {
 		connection: process.env.DATABASE_URL,
 		ssl: true,
 		migrations: {
-			directory: "./src/migrations",
+			directory: "./src/migrations/prod",
 		},
 		seeds: {
-			directory: "./src/seeds",
+			directory: "./src/seeds/prod",
 		},
 		pool: {
 			min: 2,
 			max: 10,
 		},
 	},
+
 };

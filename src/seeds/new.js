@@ -1,7 +1,9 @@
-import {Knex} from "knex";
-
-export async function seed(knex: Knex): Promise<void> {
-	// Deletes ALL existing entries
+/**
+ * @param { import("knex").Knex } knex
+ * @returns { Promise<void> } 
+ */
+exports.seed = async function(knex) {
+  // Deletes ALL existing entries
 	await knex("users").del();
 	await knex("teams").del();
 	await knex("tournaments").del();
@@ -358,4 +360,4 @@ export async function seed(knex: Knex): Promise<void> {
 			semifinals: [1234566, 1234567],
 		},
 	]);
-}
+};

@@ -1,19 +1,20 @@
-import express, { Router } from "express";
+import express, {Router} from "express";
 import cookieParser from "cookie-parser";
-import { Model } from "objection";
+import {Model} from "objection";
 import Knex from "knex";
-import knexConfiig from "../knexfile";
 import routes from "./routes/index";
 import bodyParser from "body-parser";
 import cors from "cors";
+
+var knexConfiig = require("../knexfile");
 let knex;
 let url;
 if (process.env.NODE_ENV == "production") {
-  knex = Knex(knexConfiig.production);
-  url = "https://sjs-squad.herokuapp.com";
+	knex = Knex(knexConfiig.production);
+	url = "https://sjsquad.herokuapp.com";
 } else {
-  knex = Knex(knexConfiig.development);
-  url = "http://localhost:4200";
+	knex = Knex(knexConfiig.development);
+	url = "http://localhost:4200";
 }
 
 Model.knex(knex);
@@ -23,13 +24,18 @@ const app = express();
 var distDir = __dirname + "/dist/";
 
 app.use(
-  cors({
-    origin: "http://localhost:4200",
-    allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-  })
+	cors({
+		origin: url,
+		allowedHeaders: [
+			"Content-Type",
+			"Authorization",
+			"Access-Control-Allow-Origin",
+			"Access-Control-Allow-Headers",
+		],
+		credentials: true,
+	})
 );
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -38,5 +44,5 @@ app.use(express.static(distDir));
 app.use("/", routes);
 
 app.listen(PORT, () => {
-  console.log(`app running on port ${PORT}`);
+	console.log(`app running on port ${PORT}`);
 });
