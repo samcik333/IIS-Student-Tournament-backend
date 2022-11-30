@@ -45,7 +45,7 @@ var corsOptions = {
 	origin: url,
 	optionsSuccessStatus: 200, // some legacy browsers, choke on 204
 };
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
