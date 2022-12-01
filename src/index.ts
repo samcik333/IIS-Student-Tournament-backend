@@ -11,7 +11,7 @@ let knex;
 let url: string | string[];
 if (process.env.NODE_ENV == "production") {
 	knex = Knex(knexConfiig.production);
-	url = "https://sjsquad.herokuapp.com";
+	url = "https://sjsquad.herokuapp.com/";
 } else {
 	knex = Knex(knexConfiig.development);
 	url = "http://localhost:4200";
