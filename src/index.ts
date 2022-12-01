@@ -37,7 +37,12 @@ var corsOptions = {
 	optionsSuccessStatus: 200, // some legacy browsers, choke on 204
 };
 app.use(cors(corsOptions));
-
+app.all("/*", function(req, res, next) {
+	if (req.method.toLowerCase() !== "options") {
+	  return next();
+	}
+	return res.send(204);
+  });
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(cookieParser());

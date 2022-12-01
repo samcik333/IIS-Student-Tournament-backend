@@ -34,6 +34,7 @@
 		"http-errors": "^2.0.0",
 		"jsonwebtoken": "^8.5.1",
 		"knex": "^2.3.0",
+		"local-cors-proxy": "^1.1.0",
 		"morgan": "^1.10.0",
 		"objection": "^3.0.1",
 		"pg": "^8.8.0",
