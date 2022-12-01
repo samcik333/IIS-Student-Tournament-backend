@@ -1,5 +1,5 @@
 import express from "express";
-import {deleteUser, getUserId, getUsers, updateUser} from "../controllers/user";
+import {deleteUser, getUserId, getUsers, updateUser, userById} from "../controllers/user";
 import {
 	deleteTournament,
 	ownerTournaments,
@@ -11,6 +11,7 @@ const router = express.Router();
 router.get("/user", getUserId);
 router.get("/user/profile", authorization, getUserId);
 router.get("/users", getUsers);
+router.get("/getuser/:id", userById);
 
 router.get("/user/tournaments", authorization, ownerTournaments);
 router.patch("/user/tournaments", update);

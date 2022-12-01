@@ -3,7 +3,7 @@ version: "3.8"
 services:
     postgres:
         image: postgres:13-alpine
-        container_name: sl-postgres2
+        container_name: sl-postgres
         environment:
             POSTGRES_USER: postgres
             POSTGRES_DB: postgres

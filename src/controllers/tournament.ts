@@ -25,6 +25,7 @@ import {getBracket} from "../services/tournamentService/getBracket";
 import {getParticipants} from "../services/tournamentService/getParticipants";
 import {stateUpdateToOpen} from "../services/tournamentService/stateChange";
 import {updateTournament} from "../services/tournamentService/udate";
+import { updateBracket } from "../services/tournamentService/updBracket";
 
 export const tournaments = async (req: Request, res: Response) => {
 	const result = await getAll(req.query);
@@ -156,4 +157,12 @@ export const deleteTournament = async (req: Request, res: Response) => {
 			.send({message: "Tournament was successfully deleted"});
 	}
 	return res.status(400).send({message: "Error with deleting Tournament"});
+};
+
+export const bracketUpate = async (req: Request, res: Response) => {
+	const newBracket = await updateBracket(req);
+	if (!newBracket) {
+		return res.status(409).send({message: "Tournament update failed"});
+	}
+	return res.status(200).send({message:"Bracket was updated!"});
 };

@@ -1,6 +1,7 @@
 import { Express, Response, Request } from "express";
 import { saveMatch } from "../services/matchService/create";
 import { getMacth } from "../services/matchService/getMatch";
+import { updateMatch } from "../services/matchService/update";
 
 
 export const match = async (req: Request, res: Response) => {
@@ -17,5 +18,10 @@ export const createMatch = async (req: Request, res: Response) => {;
 	if (!newMatch) {
 		return res.status(409).json({ message: "Match creation failed" });
 	}
-	return res.status(200).json({ message: "Match was created" });
+	return res.status(200).send(newMatch);
+};
+
+export const update = async (req: Request, res: Response) => {
+	const match = await updateMatch(req);
+	return res.status(200).send(match);
 };

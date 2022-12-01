@@ -71,6 +71,7 @@ exports.up = async function(knex) {
         table.integer("secondScore");
         table.integer("firstTeam");
         table.integer("secondTeam");
+        table.integer("order");
     })
     .createTable("users-teams-matches", (table) => {
         table.increments("id").primary().unique();

@@ -12,6 +12,11 @@ export const getUserId = async (req: Request, res: Response) => {
 	return res.status(200).send(user);
 };
 
+export const userById = async (req: Request, res: Response) => {
+	const user = await findUserById(parseInt(req.params.id));
+	return res.status(200).send(user);
+};
+
 export const updateUser = async (req: Request, res: Response) => {
 	const user = await updateUserInfo(req);
 	return res.status(200).send(user);
