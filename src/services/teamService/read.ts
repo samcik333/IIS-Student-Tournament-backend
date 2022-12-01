@@ -13,7 +13,7 @@ export const getTeamsByUserId = async (req: Request) => {
 };
 
 export const getOwnedTeamsByUserId = async (req: Request) => {
-	return await Team.query().where("ownerId", req.body.id);
+	return await Team.query().where("ownerId", req.params.id);
 };
 
 export const getTeamById = async (req: Request) => {

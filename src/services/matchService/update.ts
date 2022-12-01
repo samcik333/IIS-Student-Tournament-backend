@@ -11,7 +11,7 @@ export const updateMatch = async (req: Request) => {
         order   
 	} = req.body;
 
-	return await Match.query()
+	await Match.query()
 		.findById(req.body.id)
 		.update({
             tournamentId,
@@ -21,4 +21,6 @@ export const updateMatch = async (req: Request) => {
             secondTeam,
             order   
 		});
+
+    return await Match.query().findById(req.body.id);
 };
