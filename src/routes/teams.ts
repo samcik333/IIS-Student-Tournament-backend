@@ -19,7 +19,7 @@ const router = express.Router();
 
 router.get("/teamsAll", teamsAll);
 router.get("/teams", authorization, teamsOfUser);
-router.get("/ownedTeams", authorization, ownedTeamsOfUser);
+router.get("/ownedTeams/:id", ownedTeamsOfUser);
 router.get("/team/:id", teamInfo);
 router.get("/teamPlayer/:id", playerInfo);
 router.get("/teamPlayerList/:id", teamPlayerList);
