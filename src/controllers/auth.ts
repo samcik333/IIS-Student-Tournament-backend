@@ -85,6 +85,7 @@ export const loginUser = async (req: Request, res: Response) => {
 			expiresIn: "1h",
 		}
 	);
+	console.log(token);
 
 	return res
 		.cookie("access_token", token, {
