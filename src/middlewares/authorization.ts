@@ -10,6 +10,7 @@ type MyToken = {
 
 export const authorization = async (req: Request, res: Response, next: any) => {
 	const token = req.cookies.access_token;
+	console.log("auth",token)
 
 	if (!token) {
 		return res.status(403);

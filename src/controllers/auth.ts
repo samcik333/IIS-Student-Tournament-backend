@@ -44,7 +44,8 @@ export const registerUser = async (req: Request, res: Response) => {
 	return res
 		.cookie("access_token", token, {
 			httpOnly: true,
-			secure: process.env.NODE_ENV === "production",
+			sameSite: 'none', 
+			secure: true 
 		})
 		.json({
 			message: "Successfully registered",
@@ -85,10 +86,13 @@ export const loginUser = async (req: Request, res: Response) => {
 			expiresIn: "1h",
 		}
 	);
+	console.log(token);
 
 	return res
 		.cookie("access_token", token, {
 			httpOnly: true,
+			sameSite: 'none', 
+			secure: true 
 		})
 		.json({
 			message: "Logged in successfully",
