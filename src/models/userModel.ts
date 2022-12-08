@@ -18,6 +18,7 @@ export default class User extends Model {
   bronze: number = 0;
   numberOfGames: number = 0;
   numberOfWins: number = 0;
+  likedTournaments: number[] = [];
   static get tableName() {
     return "users";
   }

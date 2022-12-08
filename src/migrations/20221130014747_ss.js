@@ -152,7 +152,25 @@ exports.up = async function(knex) {
             .inTable("teams")
             .onDelete("CASCADE")
             .index();
+    })
+    .createTable("likedTournaments", (table) => {
+        table.increments("id").primary().unique();
+        table
+            .integer("userId")
+            .unsigned()
+            .references("id")
+            .inTable("users")
+            .onDelete("CASCADE")
+            .index();
+        table
+            .integer("tournamentId")
+            .unsigned()
+            .references("id")
+            .inTable("tournaments")
+            .onDelete("CASCADE")
+            .index();
     });
+  
 };
 
 /**
@@ -161,6 +179,7 @@ exports.up = async function(knex) {
  */
 exports.down = async function(knex) {
     return (
+        await knex.schema.dropTableIfExists("likedTournaments"),
 		await knex.schema.dropTableIfExists("users-tournaments-teams"),
 		await knex.schema.dropTableIfExists("users-teams"),
 		await knex.schema.dropTableIfExists("users-teams-matches"),
