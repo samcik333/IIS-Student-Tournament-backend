@@ -4,8 +4,7 @@ import Liked from "../../models/likedTournaments";
 
 
 export const dislikeTournament = async (req: any) => {
-    const userID = req.body.id;
+    const userID = req.body.userID;
     const tournamentID = req.body.tournamentID;
-
-    await Liked.query().findOne(userID,userID && tournamentID,tournamentID).delete();
+    return await Liked.query().where('userId',userID).where('tournamentId',tournamentID).delete();
 }

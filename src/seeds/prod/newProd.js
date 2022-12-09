@@ -442,7 +442,7 @@
 			  mode: 5,
 			  capacity: 8,
 			  numberOfPlayers: 4,
-			  logo: "https://www.freeiconspng.com/img/42843",
+			  logo: "https://i.pinimg.com/originals/3f/73/47/3f7347c1a4a72c1b39bc14138c377737.png",
 			  state: "open",
 		  },
 		  {
@@ -1322,7 +1322,7 @@
 			  tournamentId: 1006,
 			  final: [],
 			  bronze: [],
-			  eightfinals: [1011,1012,1013,1014,1015,1016,1014,1018],
+			  eightfinals: [1011,1012,1013,1014,1015,1016,1017,1018],
 			  quarterfinals: [],
 			  semifinals: [],
 		  },
