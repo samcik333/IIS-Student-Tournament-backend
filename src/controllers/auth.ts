@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import {Request, Response} from "express";
 import jwt from "jsonwebtoken";
 import {
 	findRegisteredUser,
@@ -6,10 +6,10 @@ import {
 } from "../services/userService/find";
 import registerUserService from "../services/registerService/registerUser";
 import encryptPassword from "../services/registerService/cryptPassword";
-import { login } from "../services/registerService/login";
+import {login} from "../services/registerService/login";
 
 export const registerUser = async (req: Request, res: Response) => {
-	const { name, lastname, username, email, password } = req.body;
+	const {name, lastname, username, email, password} = req.body;
 	const userToRegister = await findRegisteredUser(username, email);
 
 	if (userToRegister === "username") {
@@ -44,8 +44,8 @@ export const registerUser = async (req: Request, res: Response) => {
 	return res
 		.cookie("access_token", token, {
 			httpOnly: true,
-			sameSite: 'none', 
-			secure: true 
+			sameSite: "none",
+			secure: true,
 		})
 		.json({
 			message: "Successfully registered",
@@ -54,7 +54,7 @@ export const registerUser = async (req: Request, res: Response) => {
 };
 
 export const loginUser = async (req: Request, res: Response) => {
-	const { username, password } = req.body;
+	const {username, password} = req.body;
 
 	const userToLogin = await findRegisteredUser(username);
 
@@ -91,8 +91,8 @@ export const loginUser = async (req: Request, res: Response) => {
 	return res
 		.cookie("access_token", token, {
 			httpOnly: true,
-			sameSite: 'none', 
-			secure: true 
+			sameSite: "none",
+			secure: true,
 		})
 		.json({
 			message: "Logged in successfully",

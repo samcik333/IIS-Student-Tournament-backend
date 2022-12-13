@@ -75,6 +75,20 @@ export default class Tournament extends Model {
 					to: " bracket.tournamentId",
 				},
 			},
+			likedTournaments: {
+				relation: Model.ManyToManyRelation,
+				modelClass: User,
+
+				join: {
+					from: "tournaments.id",
+
+					through: {
+						from: "likedTournaments.tournamentId",
+						to: "likedTournaments.userId",
+					},
+					to: "users.id",
+				},
+			},
 		};
 	}
 }

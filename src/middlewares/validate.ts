@@ -1,7 +1,7 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { fail, ok } from "assert";
-import { Request, Response } from "express";
+import {fail, ok} from "assert";
+import {Request, Response} from "express";
 
 const ajv = new Ajv();
 addFormats(ajv);
@@ -37,7 +37,10 @@ export const validateRegisterUser = async (
 	};
 	const valid = ajv.validate(registerSchema, req.body);
 	if (!valid) {
-		return res.status(400).send(ajv.errors);
+		if (ajv.errors) {
+			console.log(ajv.errors);
+			return res.status(400).send({message: ajv.errors[0].instancePath});
+		}
 	}
 	return await next();
 };
