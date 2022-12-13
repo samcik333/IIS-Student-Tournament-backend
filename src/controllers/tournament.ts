@@ -23,6 +23,7 @@ import {
 import {getAll} from "../services/tournamentService/getAll";
 import {getBracket} from "../services/tournamentService/getBracket";
 import {getParticipants} from "../services/tournamentService/getParticipants";
+import { isparticipant } from "../services/tournamentService/isParticipant";
 import {stateUpdateToOpen} from "../services/tournamentService/stateChange";
 import {updateTournament} from "../services/tournamentService/udate";
 import { updateBracket } from "../services/tournamentService/updBracket";
@@ -166,3 +167,12 @@ export const bracketUpate = async (req: Request, res: Response) => {
 	}
 	return res.status(200).send({message:"Bracket was updated!"});
 };
+
+export const isParticipant = async (req: Request, res: Response) => {
+	const isParticipating = await isparticipant(req);
+	if(isParticipating){
+		return res.status(200).send(true);
+	}else{
+		return res.status(200).send(false);
+	}
+}

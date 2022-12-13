@@ -23,5 +23,6 @@ export const createMatch = async (req: Request, res: Response) => {;
 
 export const update = async (req: Request, res: Response) => {
 	const match = await updateMatch(req);
-	return res.status(200).send(match);
+	console.log(match);
+	return res.status(200).send({match});
 };

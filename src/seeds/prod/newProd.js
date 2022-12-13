@@ -4,6 +4,7 @@
  */
  exports.seed = async function(knex) {
 	// Deletes ALL existing entries
+	await knex("likedTournaments").del();
 	  await knex("users").del();
 	  await knex("teams").del();
 	  await knex("tournaments").del();
@@ -441,7 +442,7 @@
 			  mode: 5,
 			  capacity: 8,
 			  numberOfPlayers: 4,
-			  logo: "https://www.freeiconspng.com/img/42843",
+			  logo: "https://i.pinimg.com/originals/3f/73/47/3f7347c1a4a72c1b39bc14138c377737.png",
 			  state: "open",
 		  },
 		  {
@@ -505,6 +506,38 @@
 			  state: "open",
 		  },
 	  ]);
+	  await knex("likedTournaments").insert([
+		  {
+			id: 1000,
+			userId: 1000,
+			tournamentId: 1000,
+		  },
+		  {
+			id: 1001,
+			userId: 1000,
+			tournamentId: 1001,
+		  },
+		  {
+			id: 1002,
+			userId: 1001,
+			tournamentId: 1000,
+		  },
+		  {
+			id: 1003,
+			userId: 1001,
+			tournamentId: 1001,
+		  },
+		  {
+			id: 1004,
+			userId: 1002,
+			tournamentId: 1000,
+		  },
+		  {
+			id: 1005,
+			userId: 1003,
+			tournamentId: 1001,
+		  },
+	  ],);
 	  await knex("matches").insert([
 		  {
 			  id: 1001,
@@ -1289,7 +1322,7 @@
 			  tournamentId: 1006,
 			  final: [],
 			  bronze: [],
-			  eightfinals: [1011,1012,1013,1014,1015,1016,1014,1018],
+			  eightfinals: [1011,1012,1013,1014,1015,1016,1017,1018],
 			  quarterfinals: [],
 			  semifinals: [],
 		  },

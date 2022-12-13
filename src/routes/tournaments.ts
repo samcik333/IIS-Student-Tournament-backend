@@ -16,6 +16,7 @@ import {
 	deleteTeamFromTournament,
 	deleteUserFromTournament,
 	bracketUpate,
+	isParticipant,
 } from "../controllers/tournament";
 const router = express.Router();
 
@@ -36,5 +37,7 @@ router.delete("/tournament/:id", deleteTournamentByAdmin);
 router.get("/bracket", bracket);
 
 router.put("/bracket/update", bracketUpate);
+
+router.get("/isParticipant/:tournamentID/:partID/:type", isParticipant);
 
 export default router;
